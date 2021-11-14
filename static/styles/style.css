@@ -1,0 +1,36 @@
+.main{
+    background: url('/static/images/bg.jpg') center/cover no-repeat;
+    color: white;
+    min-height: 444px;
+}
+
+.quote{
+    font:italic small-caps bold 44px/1 sans-serif;
+    padding-top: 60px;
+}
+.quote_author{
+    font: small-caps bold 33px/1 sans-serif;
+    padding-top: 15px;
+    text-align:right;
+}
+
+.label{
+    font: small-caps bold 22px/1 sans-serif;
+}
+
+.dignity h1{
+    font: small-caps bold 33px/1 sans-serif;
+}
+
+.nd{
+    font: italic small-caps bold 14px/1 sans-serif;
+    text-decoration: none;
+    color:black;
+}
+@media only screen and (min-width: 768px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
+    }
+}
+

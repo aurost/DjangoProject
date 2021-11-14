@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <nav aria-label="breadcrumb" class="mt-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="nd" href="{% url 'base' %}">Главная</a></li>
+        <li class="breadcrumb-item"><a class="nd disabled">Услуги</a></li>
+      </ol>
+    </nav>
+</div>
+
+<div class="container pb-5">
+    <div class="d-flex align-items-start">
+        <div class="row">
+            <div class="col-5">
+                <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link" id="v-pills-op-tab" data-bs-toggle="pill" data-bs-target="#v-pills-op" type="button" role="tab" aria-controls="v-pills-op" aria-selected="true">Оперативная печать</button>
+                    <button class="nav-link active" id="v-pills-pp-tab" data-bs-toggle="pill" data-bs-target="#v-pills-pp" type="button" role="tab" aria-controls="v-pills-pp" aria-selected="false">Постпечатные услуги</button>
+                    <button class="nav-link" id="v-pills-cop-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cop" type="button" role="tab" aria-controls="v-pills-cop" aria-selected="false">Цветная офсетная печать</button>
+                    <button class="nav-link" id="v-pills-prep-tab" data-bs-toggle="pill" data-bs-target="#v-pills-prep" type="button" role="tab" aria-controls="v-pills-prep" aria-selected="false">Допечатная подготовка</button>
+                    <button class="nav-link" id="v-pills-fp-tab" data-bs-toggle="pill" data-bs-target="#v-pills-fp" type="button" role="tab" aria-controls="v-pills-fp" aria-selected="false">Полная подготовка издания к печати</button>
+                </div>
+            </div>
+            <div class="col-7" style="min-height: 777px">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade" id="v-pills-op" role="tabpanel" aria-labelledby="v-pills-op-tab">
+                        {% for product in products %}
+                            {% if product.title == 'Оперативная печать' %}
+                                <div class="card mb-3">
+                                  <img class="card-img-top" src="{{ product.image.url }}" alt="">
+                                  <div class="card-body text-center">
+                                    <h4 class="card-title">
+                                      <p>{{ product.title }}</p>
+                                    </h4>
+                                    <h5>от {{ product.price }} руб.</h5>
+                                      {% if request.user.is_authenticated %}
+                                    	<a href="{% url 'add_to_cart' slug=product.slug %}">
+                                        <button class="btn btn-outline-danger">Добавить в корзину</button>
+                                    	</a>
+                                      {% endif %}
+                                      {% if not request.user.is_authenticated %}
+                                          <button class="btn btn-outline-danger disabled">Авторизуйтесь для добавления в корзину</button>
+                                      {% endif %}
+                                  </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <p align="justify">
+                            Оперативная печать - это требование нынешнего времени. Срочность, спешка, необходимость быть одновременно в нескольких местах,
+                            занимаясь несколькими делами - все это заставляет людей (особенно тех, кто живет в крупных городах), экономить свое время.
+                             В ситуациях, когда возникает необходимость что-то очень быстро напечатать, то оперативная печать бывает очень кстати.
+                            Случается, что необходимость что-то напечатать возникает очень неожиданно. Оперативная печать поможет и в этоv случае!
+                        </p>
+                        <p align="justify">
+                            Обращаться в типографию, осуществляющую офсетную печать - нет смысла. Времени и терпения, чтобы дождаться выполнения заказа,
+                            явно не хватит. Помимо этого, далеко не каждая такая офсетная типография возьмется за выполнение малотиражного, бесперспективного
+                            заказа. И в сложившейся ситуации на помощь придет оперативная печать! Именно с ее помощью удастся напечатать неожиданно
+                            потребовавшуюся печатную продукцию.
+                        </p>
+                        <p align="justify">
+                            Оперативная печать выгодна еще и тем, что центры, которые ей занимаются, обеспечивают, как правило, постпечатную обработку
+                            (резку, ламинирование, бигование, скрепление и т.д.). Это избавит от необходимости обращаться куда-то еще, а значит - снова сэкономит
+                            и без того дорогое время! Оперативная печать спасет кажущуюся безнадежной ситуацию.
+                        </p>
+                        <p align="justify">
+                            Поэтому, если участие в нужной выставке вдруг становится менее вероятным, потому что вы не располагаете необходимым количеством своей
+                            печатной продукции (буклеты, визитки, календари) - положение исправит оперативная печать! Ваши сделки с потенциальными клиентами или
+                            сотрудничество с потенциальными партнерами не будут подпадут под угрозу, ведь вся необходимая полиграфия будет у вас на руках уже в самое
+                            ближайшее время после заказа ее печати. Да, может быть, вы не израсходуете ее до конца на предстоящем событии, но, во-первых, у вас останется
+                            запас, который можно будет использовать в следующий раз, а во-вторых, эффект и полезный результат, который можно ожидать от участия в мероприятии,
+                            с лихвой окупят затраты на оперативную печать! Поэтому в данном случае не стоит излишне увлекаться экономией - иначе можно потерять гораздо больше!
+                        </p>
+                    </div>
+
+                    <div class="tab-pane fade show active" id="v-pills-pp" role="tabpanel" aria-labelledby="v-pills-pp-tab">
+                        {% for product in products %}
+                            {% if product.title == 'Постпечатные услуги' %}
+                                <div class="card mb-3">
+                                  <img class="card-img-top" src="{{ product.image.url }}" alt="">
+                                  <div class="card-body text-center">
+                                    <h4 class="card-title">
+                                      <p>{{ product.title }}</p>
+                                    </h4>
+                                    <h5>от {{ product.price }} руб.</h5>
+                                      {% if request.user.is_authenticated %}
+                                    	<a href="{% url 'add_to_cart' slug=product.slug %}">
+                                        <button class="btn btn-outline-danger">Добавить в корзину</button>
+                                    	</a>
+                                      {% endif %}
+                                      {% if not request.user.is_authenticated %}
+                                          <button class="btn btn-outline-danger disabled">Авторизуйтесь для добавления в корзину</button>
+                                      {% endif %}
+                                  </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <p align="justify">
+                            «Aurost Media» предлагает весь спектр послепечатных работ, используемых в производстве наружной рекламы и POS материалов.
+                        </p>
+                        <p align="justify">
+                            Основные виды послепечатных работ:
+                        </p>
+                        <ul>
+                            <li>изготовление карманов (внутренних и внешних);</li>
+                            <li>установка люверсов (без усиления, с усилением, с двойным усилением);</li>
+                            <li>швы по изображению (в том числе, в плакатах больших форматов);</li>
+                            <li>склейка (термоклей, спецклей);</li>
+                            <li>сварка;</li>
+                            <li>обрезка по заданным размерам;</li>
+                            <li>изготовление плакатов со сложными геометрическими размерами;</li>
+                            <li>резка;</li>
+                            <li>ламинация;</li>
+                            <li>тиснение;</li>
+                            <li>высечка;</li>
+                            <li>фальцовка;</li>
+                            <li>биговка;</li>
+                            <li>скрепление клеем (КБС);</li>
+                            <li>вложение саше и объемных предметов;</li>
+                            <li>скрепление на файловую скобу;</li>
+                            <li>сверление отверстий;</li>
+                            <li>вложения и приклейка пробников на каплю отторгаемого или не отторгаемого клея;</li>
+                            <li>поэкземплярная упаковка (полиэтилен или полипропилен) и т.д.</li>
+                        </ul>
+                        <p align="justify">
+                            Мы гарантируем качественную печать и высокое качество продукции в целом, включая весь комплекс послепечатных работ.
+                        </p>
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-cop" role="tabpanel" aria-labelledby="v-pills-cop-tab">
+                        {% for product in products %}
+                            {% if product.title == 'Цветная офсетная печать' %}
+                                <div class="card mb-3">
+                                  <img class="card-img-top" src="{{ product.image.url }}" alt="">
+                                  <div class="card-body text-center">
+                                    <h4 class="card-title">
+                                      <p>{{ product.title }}</p>
+                                    </h4>
+                                    <h5>от {{ product.price }} руб.</h5>
+                                      {% if request.user.is_authenticated %}
+                                    	<a href="{% url 'add_to_cart' slug=product.slug %}">
+                                        <button class="btn btn-outline-danger">Добавить в корзину</button>
+                                    	</a>
+                                      {% endif %}
+                                      {% if not request.user.is_authenticated %}
+                                          <button class="btn btn-outline-danger disabled">Авторизуйтесь для добавления в корзину</button>
+                                      {% endif %}
+                                  </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <p align="justify">
+                            Цветная офсетная печать (в полиграфии, от англ. offset - перенос) - технология печати, предусматривающая перенос краски с печатной формы на запечатываемый материал не напрямую,
+                            а через промежуточный офсетный цилиндр. Соответственно, в отличие от прочих методов печати, изображение на печатной форме делается не зеркальным, а прямым. Офсет  применяется
+                            главным образом в плоской печати.
+                        </p>
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-prep" role="tabpanel" aria-labelledby="v-pills-prep-tab">
+                        {% for product in products %}
+                            {% if product.title == 'Допечатная подготовка' %}
+                                <div class="card  mb-3">
+                                  <img class="card-img-top" src="{{ product.image.url }}" alt="">
+                                  <div class="card-body text-center">
+                                    <h4 class="card-title">
+                                      <p>{{ product.title }}</p>
+                                    </h4>
+                                    <h5>от {{ product.price }} руб.</h5>
+                                      {% if request.user.is_authenticated %}
+                                    	<a href="{% url 'add_to_cart' slug=product.slug %}">
+                                        <button class="btn btn-outline-danger">Добавить в корзину</button>
+                                    	</a>
+                                      {% endif %}
+                                      {% if not request.user.is_authenticated %}
+                                          <button class="btn btn-outline-danger disabled">Авторизуйтесь для добавления в корзину</button>
+                                      {% endif %}
+                                  </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <p align="justify">
+                            Допечатная подготовка (англ. Prepress) - процесс изготовления электронных макетов полиграфических
+                            изделий с использованием настольных издательских систем.
+                        </p>
+                        <p align="justify">Этапы допечатной подготовки</p>
+                        <ul>
+                            <li>разработка дизайна или общей концепции конечного полиграфического изделия;</li>
+                            <li>изготовление электронного макета изделия с использованием программного обеспечения (программы верстки);</li>
+                            <li>корректорская вычитка/правка текстового содержания макета;</li>
+                            <li>внесение необходимых коррекций в макет с учетом особенностей печатного и послепечатного оборудования (цветокоррекция, расстановка треппинга и т. д.);</li>
+                            <li>изготовление цветопробы (цветной образец конечного изделия);</li>
+                            <li>изготовление электронного спуска полос с учетом последующей послепечатной обработкой изделия (биговка, фальцовка, резка и т. д.)</li>
+                            <li>изготовление цветоделеных диапозитивов (вывод пленок) или отправка электронных спусков полос на устройство CTP для изготовление печатных форм;</li>
+                            <li>изготовление печатных форм для печатного оборудования для последующей печати изделия.</li>
+                        </ul>
+                        <p align="justify">Каждый этап включается в процесс или исключается из него в зависимости от производственной необходимости.</p>
+                    </div>
+
+                    <div class="tab-pane fade" id="v-pills-fp" role="tabpanel" aria-labelledby="v-pills-fp-tab">
+                        {% for product in products %}
+                            {% if product.title == 'Полная подготовка издания к печати' %}
+                                <div class="card mb-3">
+                                  <img class="card-img-top" src="{{ product.image.url }}" alt="">
+                                  <div class="card-body text-center">
+                                    <h4 class="card-title">
+                                      <p>{{ product.title }}</p>
+                                    </h4>
+                                    <h5>от {{ product.price }} руб.</h5>
+                                      {% if request.user.is_authenticated %}
+                                    	<a href="{% url 'add_to_cart' slug=product.slug %}">
+                                        <button class="btn btn-outline-danger">Добавить в корзину</button>
+                                    	</a>
+                                      {% endif %}
+                                      {% if not request.user.is_authenticated %}
+                                          <button class="btn btn-outline-danger disabled">Авторизуйтесь для добавления в корзину</button>
+                                      {% endif %}
+                                  </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        <p align="justify">Полная подготовка включает в себя работы по созданию дизайна, полиграфической верстке и редактированию.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

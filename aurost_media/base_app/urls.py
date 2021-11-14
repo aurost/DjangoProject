@@ -1,0 +1,52 @@
+from django.urls import path
+from django.contrib.auth.views import LogoutView
+from .views import (
+    BaseView,
+    RegistrationView,
+    LoginView,
+    ProfileView,
+    CartView,
+    AddToCartView,
+    DeleteFromCartView,
+    ChangeQTYView,
+    MakeOrderView,
+    CheckoutView,
+    AllNewsView,
+    BlanksView,
+    BooksView,
+    ArtProductsView,
+    OPServiceView,
+    PPServiceView,
+    COPServiceView,
+    PrePServiceView,
+    FullPServiceView,
+    AboutView,
+    ContactsView,
+    ProductDetailView
+)
+
+urlpatterns = [
+    path('', BaseView.as_view(), name='base'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('registration/', RegistrationView.as_view(), name='registration'),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+    path('profile/', ProfileView.as_view(), name='profile'),
+    path('products/<str:slug>/', ProductDetailView.as_view(), name='product_detail'),
+    path('cart/', CartView.as_view(), name='cart'),
+    path('add-to-cart/<str:slug>', AddToCartView.as_view(), name='add_to_cart'),
+    path('delete-from-cart/<str:slug>', DeleteFromCartView.as_view(), name='delete_from_cart'),
+    path('change-qty/<str:slug>', ChangeQTYView.as_view(), name='change_qty'),
+    path('checkout/', CheckoutView.as_view(), name='checkout'),
+    path('make-order/', MakeOrderView.as_view(), name='make_order'),
+    path('blanks/', BlanksView.as_view(), name='blanks'),
+    path('books/', BooksView.as_view(), name='books'),
+    path('art_products/', ArtProductsView.as_view(), name='art_products'),
+    path('services/OP', OPServiceView.as_view(), name='op_service'),
+    path('services/PP', PPServiceView.as_view(), name='pp_service'),
+    path('services/COP', COPServiceView.as_view(), name='cop_service'),
+    path('services/PreP', PrePServiceView.as_view(), name='prep_service'),
+    path('services/FullPP', FullPServiceView.as_view(), name='fp_service'),
+    path('news/', AllNewsView.as_view(), name='news'),
+    path('about/', AboutView.as_view(), name='about'),
+    path('contacts/', ContactsView.as_view(), name='contacts')
+]

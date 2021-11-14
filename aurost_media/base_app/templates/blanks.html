@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <nav aria-label="breadcrumb" class="mt-3">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="nd" href="{% url 'base' %}">Главная</a></li>
+        <li class="breadcrumb-item"><a class="nd disabled">Продукты</a></li>
+        <li class="breadcrumb-item active"><a class="nd" href="{% url 'blanks' %}">Бланки</a></li>
+      </ol>
+    </nav>
+</div>
+
+<div class="container pb-5">
+    <div class="row">
+      <div class="col-5">
+        <div class="list-group" id="list-tab" role="tablist">
+        {% for subcat in subcategories %}
+          <a class="list-group-item list-group-item-action" id="list-{{subcat.id}}" data-bs-toggle="list" href="#list-{{subcat.id}}-content" role="tab" aria-controls="list-{{subcat.id}}" style="font-size: 14px;">{{subcat.name}}</a>
+        {% endfor %}
+        </div>
+      </div>
+      <div class="col-7" style="min-height:555px;">
+        <div class="tab-content" id="nav-tabContent">
+        {% for subcat in subcategories %}
+          <div class="tab-pane fade" id="list-{{subcat.id}}-content" role="tabpanel" aria-labelledby="list-{{subcat.id}}">
+              <div class="row">
+              {% for product in products %}
+                  {% if product.category == subcat %}
+                  <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card">
+                      <a href="{{ product.get_absolute_url }}"><img class="card-img-top" src="{{ product.image.url }}" alt=""></a>
+                      <div class="card-body text-center">
+                        <h4 class="card-title">
+                          <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                        </h4>
+                        <h5>{{ product.price }} руб.</h5>
+                          {% if request.user.is_authenticated %}
+                            <a href="{% url 'add_to_cart' slug=product.slug %}">
+                              <button class="btn btn-outline-danger">Добавить в корзину</button>
+                            </a>
+                          {% endif %}
+                          {% if not request.user.is_authenticated %}
+                              <button class="btn btn-outline-danger disabled">Авторизуйтесь для добавления в корзину</button>
+                          {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  {% endif %}
+              {% endfor %}
+              </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+</div>
+
+{% endblock %}

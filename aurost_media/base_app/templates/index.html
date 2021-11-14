@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="main">
+    <div class="container">
+        <div class="content p-5">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-touch="false">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <p class="quote">Хорошая книга – бесконечна.</p>
+                    <p class="quote_author">Д. Р. Камминг</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="quote">Книги – это и самолет, и поезд, и дорога. Они и пункт назначения, и путешествие. Они – это дом.</p>
+                    <p class="quote_author">Анна Квиндлен</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="quote">Книги – это уникальная портативная магия.</p>
+                    <p class="quote_author">Стивен Кинг</p>
+                </div>
+                <div class="carousel-item">
+                    <p class="quote">Книги – самые тихие и самые постоянные друзья, они самые доступные и мудрейшие советники, и самые терпеливые учителя.</p>
+                    <p class="quote_author">Чарльз Уильям Элиот</p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="dignity py-4">
+    <h1 class="text-center py-2">Наши преимущества</h1>
+    <div class="container p-3">
+        <div class="row py-2">
+            <div class="col text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="99" height="99" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                  <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z"/>
+                </svg>
+            </div>
+            <div class="col text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="99" height="99" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+                  <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                </svg>
+            </div>
+            <div class="col text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="99" height="99" fill="currentColor" class="bi bi-badge-8k-fill" viewBox="0 0 16 16">
+                  <path d="M3.9 6.605c0 .51.405.866.95.866.545 0 .945-.356.945-.866s-.4-.852-.945-.852c-.545 0-.95.343-.95.852zm-.192 2.668c0 .589.492.984 1.142.984.646 0 1.143-.395 1.143-.984S5.496 8.28 4.85 8.28c-.65 0-1.142.404-1.142.993z"/>
+                  <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2zm5.17 7.348c0 1.041-.927 1.766-2.333 1.766-1.406 0-2.312-.72-2.312-1.762 0-.954.712-1.384 1.257-1.494v-.053c-.51-.154-1.02-.558-1.02-1.331 0-.914.831-1.587 2.088-1.587 1.253 0 2.083.673 2.083 1.587 0 .782-.523 1.182-1.02 1.331v.053c.545.11 1.257.545 1.257 1.49zM12.102 5h1.306l-2.14 2.584 2.232 3.415h-1.428l-1.679-2.624-.615.699v1.925H8.59V5h1.187v2.685h.057L12.102 5z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="row py-2">
+            <div class="col text-center label">
+              Доступные цены
+            </div>
+            <div class="col text-center label">
+              Доставка в любую точку мира
+            </div>
+            <div class="col text-center label">
+              Высокое качество работы
+            </div>
+          </div>
+    </div>
+</section>
+{% endblock content %}
